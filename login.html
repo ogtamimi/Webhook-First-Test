@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pen‑Test System – Login</title>
+  <!-- Link to external stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for a modern look -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <!-- Google Identity Services -->
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body class="login-page">
+  <div class="login-container">
+    <h1>Pen‑Test System</h1>
+    <p>Please sign in with Google to continue</p>
+    <div id="googleButton" class="google-btn-container"></div>
+  </div>
+  <script>
+    // Initialize Google Sign-In. Replace YOUR_GOOGLE_CLIENT_ID with your actual client ID.
+    const clientID = '148992511873-gkto3vl74lehb142hf95a83dpof20rnc.apps.googleusercontent.com';
+    function handleCredentialResponse(response) {
+      // Save the token in local storage (for demonstration)
+      localStorage.setItem('google_credential', response.credential);
+      // Mark user as logged in
+      localStorage.setItem('isLoggedIn', 'true');
+      // Redirect to chat page
+      window.location.href = 'index.html';
+    }
+    window.onload = function () {
+      google.accounts.id.initialize({
+        client_id: clientID,
+        callback: handleCredentialResponse,
+      });
+      google.accounts.id.renderButton(
+        document.getElementById('googleButton'),
+        { theme: 'filled_blue', size: 'large', shape: 'rectangular', text: 'signin_with' }
+      );
+      // Optionally, prompt the user to select an account
+      // google.accounts.id.prompt();
+    };
+  </script>
+</body>
+</html>
