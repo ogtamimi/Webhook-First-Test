@@ -1,7 +1,7 @@
 // script.js: handles chat functionality and authentication check
 
 // Endpoint for the AI agent webhook
-const WEBHOOK_URL = 'http://localhost:5678/webhook/ogt';
+const WEBHOOK_URL = 'https://guadalupe-endocrinologic-crista.ngrok-free.dev/webhook-test/sending';
 
 /**
  * Check if user is logged in. If not, redirect to the login page.
